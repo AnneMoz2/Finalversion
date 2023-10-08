@@ -1,0 +1,14 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple donut chart with embedded data.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/AnneMoz2/Datavis2/main/Data%20-%20cause.csv",
+      "format":{"type": "csv"}
+    },
+    "mark": {"type": "arc", "innerRadius": 50},
+    "encoding": {
+      "theta": {"field": "Percentage ", "type": "quantitative"},
+      "color": {"field": "Cause", "type": "nominal", "title":"Causes"
+      }
+    }
+  }

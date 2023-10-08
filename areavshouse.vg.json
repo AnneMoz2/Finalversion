@@ -1,0 +1,14 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/AnneMoz2/Week10/main/liveshouses1.csv"
+    },
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "category"},
+      "y": {"field": "value", "type": "quantitative"},
+      "xOffset": {"field": "group"},
+      "color": {"field": "group"}
+    }
+  }
+  

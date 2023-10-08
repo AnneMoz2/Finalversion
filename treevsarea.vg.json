@@ -1,0 +1,56 @@
+
+  {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/AnneMoz2/Datavis2/main/tree%20cover%20loss%20vs%20burnt%20area.csv"},
+    "vconcat": [{
+      "width": 480,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": ""}
+        },
+        "y": {"field": "burned area ", "type": "quantitative"},
+        "color":{"value":"#8c2d04"},
+        "tooltip":[
+          {"field":"year","type":"temporal","title":"Year:"},
+          {"field": "burned area ", "type": "quantitative", "title": "Burned Area"}
+          
+        ]
+  
+      }
+    }, {
+      "width": 480,
+      "height": 60,
+      "mark": "area",
+      "params": [{
+        "name": "brush",
+        "select": {"type": "interval", "encodings": ["x"]}
+      }],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "tree cover loss",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false}  
+          
+        },
+        
+        "color":{"value":"#005a32"},
+        "tooltip":[
+          {"field":"year","type":"temporal","title":"Year:"},
+          {"field": "tree cover loss", "type": "quantitative", "title": "Tree cover loss(Mha)"}
+          
+        ]
+        
+        
+  
+      }
+    }]
+  }
+  
