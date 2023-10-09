@@ -1,20 +1,21 @@
 h1 {
     font-family: "sans-serif";
-    color: white;
+    color: red;
 }
 p {
     font-family:"sans-serif";
-    color: #f0f8ff;
+    color: black;
+    text-align: justify;
 }
 .center {
     justify-content: center;
 }
 body{
-    background-color: black;
+    background-color: whitesmoke;
 }
 .page{
     width: 1000px;
-    background-color: black;
+    background-color: white;
     margin: auto;
     padding: 50px;
     padding-top: 35px;
@@ -33,8 +34,8 @@ h1 {
 }
 .center-heading{
     text-align:left;
-    color:aliceblue;
+    color:red;
 }
 .description description-left {
-    color: aliceblue;
+    color: black;
 }
