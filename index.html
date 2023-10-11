@@ -21,132 +21,276 @@
         <div class="pure-g">
           <div class="pure-u-1-1">
             <h1 class="center-heading"> Blazing Fury: The impact of Wildfires and Bushfires in Australia</h1>
-            <p> Australia known for its diverse landscapes and unique ecosystems, has long
-                been a land of extremes. Among the most devastating natural disasters that 
-               regularly challenge the continent is bushfires. These infernos, fueled by a 
-               combination of dry conditions, strong winds, and an abundance of flammable 
-               vegetation, have become increasingly prevalent and destructive in recent years. 
-               In this visualization, we embark on a journey to explore the complex and concerning
-               phenomenon of bushfires in Australia. 
-               The causes of bushfires in Australia are predominantly human-related. Intentional or
-               unintentional actions by people account for the majority of fire ignitions, with "suspicious"
-               and "accidental" being the top attributions. This highlights the critical role that human 
-               behavior plays in igniting bushfires, whether through deliberate actions like arson or unintentional
-               activities such as discarding cigarette butts or equipment use like chainsaws and mowers. Surprisingly,
-               even factors like train sparks or lightning can contribute to fire outbreaks. With such a significant 
-               portion of bushfires being linked to human activities, it underscores the importance of fire prevention measures, 
-               responsible behavior, and understanding one's insurance coverage in areas prone to these natural disasters.
+            <div class="description description-left">
+            <p> Australia known for its diverse landscapes and unique ecosystems, has
+                long been a land of extremes. Among the most devastating 
+                natural disasters that regularly challenge the continent is <b>bushfires</b>. These 
+                infernos, fueled by a combination of dry conditions, strong winds, 
+                and an abundance of flammable vegetation, have become increasingly prevalent 
+                and destructive in recent years. In this visualization, we embark 
+                on a journey to explore the complex and concerning phenomenon 
+                of bushfires in Australia.
+
              </p>
+             
            </div>
-          </div>
-        </div>
-<!--end pure grid group-->
-
-
-
-<!--pure grid group -->
-      <div class="pure-g">
-          <div class="pure-u-1-2">
-              <div id="causes"/></div>
+           <div id="map" class="vis-container2"></div>
+           <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div class="description description-left">
+                    <h2>Causes</h3>
+                    <p>The <b>causes</b> of bushfires in Australia are predominantly human-related. <b>Intentional</b> or
+                        <b>unintentional</b> actions by <b>people</b> account for the <b>majority</b> of fire ignitions, with <b>"suspicious"</b>
+                        and <b>"accidental"</b> being the top attributions. This highlights the critical role that human 
+                        behavior plays in igniting bushfires, whether through deliberate actions like arson or unintentional
+                        activities such as discarding cigarette butts or equipment use like chainsaws and mowers. Surprisingly,
+                        even factors like train sparks or lightning can contribute to fire outbreaks. With such a significant 
+                        portion of bushfires being linked to human activities, it underscores the importance of fire prevention measures, 
+                        responsible behavior, and understanding one's insurance coverage in areas prone to these natural disasters.</p>
+                </div>  
+                </div>
+            <div class="pure-u-1-2">
+                <div id="causes"/ class="vis-container1"></div>
               <script>
                 var spec={
                     
                         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                         "description": "A simple donut chart with embedded data.",
+                        "height":200,
+                        "width":300,
                         "data": {
                         "url": "https://raw.githubusercontent.com/AnneMoz2/Datavis2/main/Data%20-%20cause.csv",
                         "format":{"type": "csv"}
                         },
                         "mark": {"type": "arc", "innerRadius": 50},
+                        "config": {"view": {"stroke": null}, "axis": {"grid": false}},
                         "encoding": {
                         "theta": {"field": "Percentage ", "type": "quantitative"},
-                        "color": {"field": "Cause", "type": "nominal", "title":"Causes"
+                        "color": {"field": "Cause", "type": "nominal", "title":"Causes",
+                        "scale":{
+        
+        "range":["#5f0f40","#9a031e","#0f4c5c","#eae2b7","#fb8b24","#e36414"]
                         }
+                        },
+      "tooltip":[
+        {"field":"Cause","type":"nominal","title":"Cause"},
+        {"field": "Percentage ", "type": "quantitative", "title": "Percentage"},
+        
+        ],
+        
                         }
                     }
-                    vegaEmbed("#causes",spec) .then(result=>console.log(result))
-    .catch(console.warn);;
-    // //    result.view provides access to the Vega View API
-    // then(result=>console.log(result))
-    // .catch(console.warn);
+                    vegaEmbed("#causes",spec) .then(result=>console.log(result)).catch(console.warn);
               </script>
               </div>
-              
+            </div>
 
-          </div>   
-          <div class="pure-u-1-2">
-              <div id="map" class="vis-container2"></div>
-          </div>
-      </div>
+           <!--pure grid group -->
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <div class="description description-left">
+            <h2>Fires, life and house loss</h3>
+            <p>The devastating bushfires that ravaged Australia in 2019-2020 were 
+              a result of a perfect storm of adverse environmental conditions. <b>High 
+              temperatures</b>, a <b>deficit in rainfall</b>, and prolonged <b>drought</b> collectively 
+              contributed to a significant increase in fuel availability and exceptionally 
+              high fire danger indexes. These fires, which spanned across multiple states, 
+              burned almost <b>19 million</b> hectares of land and had a profound impact on both 
+              human and wildlife populations. Tragically, the fires claimed <b>33 lives</b> and 
+              destroyed <b>over 3,000 houses</b>, leaving many communities in distress. The loss 
+              of life and property underscores the urgent need for robust fire prevention 
+              and management strategies, as well as a heightened awareness of the impacts 
+              of climate change on the frequency and severity of such catastrophic events.</p>
+        </div>  
+        </div>
+    <div class="pure-u-1-2">
+        <!-- s -->
+        <div id="loss"/ class="vis-container3"></div>
+        <script>
+          var spec={
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  
+  "data": { "url": "https://raw.githubusercontent.com/AnneMoz2/Finalversion/main/houselife.csv"},
+  "transform": [
+    {"calculate": "datum.type == 2 ? 'lives lost' : 'houses lost'", "as": "kind"}
+  ],
+  "spacing": 0,
+  "hconcat": [{
+    "transform": [{
+      "filter": {"field": "kind", "equal": "lives lost"}
+    }],
+    "title": "Lives lost",
+    "mark": "bar",
+    
+    "encoding": {
+      "y": {
+        "field": "state", "axis": null
+      },
+      "x": {
+        "aggregate": "sum", "field": "number",
+        "title": "number of lives lost",
+        "axis": {"format": "s"}, "sort": "descending"
+      },
+      "color": {
+        "field": "kind",
+        "scale": {"range": ["#e36414", "#5f0f40"]},
+        "legend": null
+      }
+    }
+  }, {
+    "width": 20,
+    "view": {"stroke": null},
+    "mark": {
+      "type": "text",
+      "align": "center"
+    },
+    "encoding": {
+      "y": {"field": "state", "type": "nominal", "axis": null},
+      "text": {"field": "state", "type": "nominal"}
+    }
+  }, {
+    "transform": [{
+      "filter": {"field": "kind", "equal": "houses lost"}
+    }],
+    "title": "Houses lost",
+    "mark": "bar",
+    "encoding": {
+      "y": {
+        "field": "state", "title": null,
+        "axis": null
+      },
+      "x": {
+        "aggregate": "sum", "field": "number",
+        "title": "number of houses lost",
+        "axis": {"format": "s"}
+      },
+      "color": {
+        "field": "kind",
+        "legend": null
+      }
+    }
+  }],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}
+      
+          vegaEmbed("#loss",spec) .then(result=>console.log(result)).catch(console.warn); 
+
+        </script>
+        </div>
+
+        
+        </div>
 <!--end pure grid group-->
 
 <!--pure grid group -->
 <div class="pure-g">
     <div class="pure-u-1-2">
         <div class="description description-left">
-            <p>Enter para</p>
+            <h2>Tree cover loss</h3>
+            <p>The devastating bushfires that have swept through Australia over the 
+                past few years have caused extensive tree loss, with profound consequences 
+                for the country's diverse forests. These fires, driven by a confluence of 
+                factors like prolonged droughts, high temperatures, and strong winds, 
+                have resulted in substantial tree cover reductions across multiple states. 
+                For instance, in <b>New South Wales</b> and <b>Victoria</b>, regions with significant <b>commercial 
+                plantations</b>, these fires have taken a heavy toll on the timber industry. Vast swathes 
+                of commercial plantations have been reduced to ashes, leading to economic losses and 
+                disruptions in the supply chain. Moreover, the ecological balance has been disrupted 
+                as these plantations play a crucial role in absorbing carbon dioxide and supporting 
+                local wildlife.</p>
         </div>  
+        </div>
     <div class="pure-u-1-2">
         <div id="treearea"/></div>
               <script>
                 var spec=
-                        {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                            "data": {"url": "https://raw.githubusercontent.com/AnneMoz2/Datavis2/main/tree%20cover%20loss%20vs%20burnt%20area.csv"},
-                            "vconcat": [{
-                            "width": 480,
-                            "mark": "area",
-                            "encoding": {
-                                "x": {
-                                "field": "year",
-                                "type": "temporal",
-                                "scale": {"domain": {"param": "brush"}},
-                                "axis": {"title": ""}
-                                },
-                                "y": {"field": "burned area ", "type": "quantitative"},
-                                "color":{"value":"#8c2d04"},
-                                "tooltip":[
-                                {"field":"year","type":"temporal","title":"Year:"},
-                                {"field": "burned area ", "type": "quantitative", "title": "Burned Area"}
-                                
-                                ]
+                {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/AnneMoz2/Datavis2/main/tree%20cover%20loss%20vs%20burnt%20area.csv"},
+  
+  "vconcat": [
+    
+    {
+    "width": 350,
+    "height":120,
+    "layer":[
+  {
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "temporal",
+        "scale": {"domain": {"param": "brush"}},
+        "axis": {"title": "","grid":false}},
+
+      "y": {"field": "burned area ", "type": "quantitative", "title":"Burned area (Mha)"},
+      "color":{"value":"#5f0f40"},
+      "tooltip":[
+        {"field":"year","type":"temporal","title":"Year"},
+        {"field": "burned area ", "type": "quantitative", "title": "Burned Area (Mha)"}]}
+      },
+    {
+      "mark":"text",
+      "encoding":{
+      "text":{"value":"The highest burned area was recorded in 2001"},
+      "x": {"value": 125},
+      "y": {"value": 10},
+      "fontSize": {"value": 10},
+      "align": {"value": "left"},
+      "baseline": {"value": "middle"},
+      "color": {"value": "black"}}    
+  }]},
+  {
+    "width": 350,
+    "height": 80,
+    "layer":[
+      {
+    "mark": "area",
+    "params": [{
+      "name": "brush",
+      "select": {"type": "interval", "encodings": ["x"]}
+    }],
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "temporal",
+        "axis":{"grid":false},
+        "title":"Year"
+      },
+      "y": {
+        "field": "tree cover loss",
+        "type": "quantitative",
+        "title":"Tree cover loss (Mha)",
+        "axis": {"tickCount": 3}  
+        
+      },
+      "config": {
+        "view": {"stroke": null},
+        "axis": {"grid": false}
+  },
+      
+      "color":{"value":"#0f4c5c"},
+      "tooltip":[
+        {"field":"year","type":"temporal","title":"Year"},
+        {"field": "tree cover loss", "type": "quantitative", "title": "Tree cover loss (Mha)"}]
+    }},
+ {
+  "mark":"text",
+  "encoding":{
+  "text":{"value":"The highest loss of tree cover was between 2018 and 2021"},
+  "x": {"value": 150},
+  "y": {"value": 20},
+  "fontSize": {"value": 10},
+  "align": {"value": "left"},
+  "baseline": {"value": "middle"},
+  "color": {"value": "black"}}    
+}
+  ]}]} 
                         
-                            }
-                            }, {
-                            "width": 480,
-                            "height": 60,
-                            "mark": "area",
-                            "params": [{
-                                "name": "brush",
-                                "select": {"type": "interval", "encodings": ["x"]}
-                            }],
-                            "encoding": {
-                                "x": {
-                                "field": "year",
-                                "type": "temporal"
-                                },
-                                "y": {
-                                "field": "tree cover loss",
-                                "type": "quantitative",
-                                "axis": {"tickCount": 3, "grid": false}  
-                                
-                                },
-                                
-                                "color":{"value":"#005a32"},
-                                "tooltip":[
-                                {"field":"year","type":"temporal","title":"Year:"},
-                                {"field": "tree cover loss", "type": "quantitative", "title": "Tree cover loss(Mha)"}
-                                
-                                ]
-                                
-                                
-                        
-                            }
-                            }]
-                        }
-                        
-                    vegaEmbed("#treearea",spec) .then(result=>console.log(result))
-    .catch(console.warn);;
+                    vegaEmbed("#treearea",spec) .then(result=>console.log(result)).catch(console.warn);
     // //    result.view provides access to the Vega View API
     // then(result=>console.log(result))
     // .catch(console.warn);
@@ -160,58 +304,24 @@
 <div class="pure-g">
     <div class="pure-u-1-2">
         <div class="description description-left">
-            <p>Enter para</p>
+            <p>Apart from commercial plantations, native forests, essential for biodiversity and 
+               ecosystem health, have also faced severe losses. In states like <b>Queensland</b> and 
+               <b>Western Australia</b>, where <b>native forests</b> cover extensive areas, the impact of these 
+               bushfires has been devastating. These forests are home to diverse flora and fauna, 
+               and their destruction has dire consequences for the environment. The fires have not 
+               only led to tree loss but also disrupted the habitats of countless species, potentially 
+               driving some to the brink of extinction. As a result, there is a pressing need for 
+               comprehensive forest management and conservation efforts to mitigate the long-term 
+               effects of these bushfires and protect Australia's unique ecosystems.</p>
         </div>  
+        </div>
     <div class="pure-u-1-2">
         <div id="areastate" class="vis-container1"></div>
     </div>
 </div>
 <!--end pure grid group-->
 
-<!--pure grid group -->
-<div class="pure-g">
-    <div class="pure-u-1-2">
-        <div class="description description-left">
-            <h3>Fires, life and house loss</h3>
-            <p>The devastating bushfires that ravaged Australia in 2019-2020 were 
-              a result of a perfect storm of adverse environmental conditions. High 
-              temperatures, a deficit in rainfall, and prolonged drought collectively 
-              contributed to a significant increase in fuel availability and exceptionally 
-              high fire danger indexes. These fires, which spanned across multiple states, 
-              burned almost 19 million hectares of land and had a profound impact on both 
-              human and wildlife populations. Tragically, the fires claimed 33 lives and 
-              destroyed over 3,000 houses, leaving many communities in distress. The loss 
-              of life and property underscores the urgent need for robust fire prevention 
-              and management strategies, as well as a heightened awareness of the impacts 
-              of climate change on the frequency and severity of such catastrophic events.</p>
-        </div>  
-    <div class="pure-u-1-2">
-        <div id="loss"/></div>
-              <script>
-                            var spec={
-                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                "data": {
-                "url": "https://raw.githubusercontent.com/AnneMoz2/Week10/main/liveshouses1.csv"
-                },
-                "mark": "bar",
-                "encoding": {
-                "x": {"field": "category"},
-                "y": {"field": "value", "type": "quantitative"},
-                "xOffset": {"field": "group"},
-                "color": {"field": "group"}
-                }
-            }
-            
-                                vegaEmbed("#loss",spec) .then(result=>console.log(result))
-    .catch(console.warn);;
-    // //    result.view provides access to the Vega View API
-    // then(result=>console.log(result))
-    // .catch(console.warn);
-              </script>
-              </div>
-    </div>
-</div>
-<!--end pure grid group-->
+
 
 </div>
 
@@ -251,7 +361,9 @@
     //    result.view provides access to the Vega View API
     then(result=>console.log(result))
     .catch(console.warn);
-
+    
+   
+  
 </script>
 
 </body>

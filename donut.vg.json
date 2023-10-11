@@ -8,7 +8,17 @@
     "mark": {"type": "arc", "innerRadius": 50},
     "encoding": {
       "theta": {"field": "Percentage ", "type": "quantitative"},
-      "color": {"field": "Cause", "type": "nominal", "title":"Causes"
+      "color": {"field": "Cause", "type": "nominal", "title":"Causes",
+      "scale":{
+        "domain":["Accidental","Deliberate","Natural","Other","Reignition","Suspicous"],
+        "range":["#E69F00","#F0E442","#0a9396","#EAE2B7","#fc8d59","#003049"]
+        
       }
+      },
+      "tooltip":[
+        {"field":"Cause","type":"nominal","title":"Cause:"},
+        {"field": "Percentage ", "type": "quantitative", "title": "Percentage"}
+        
+        ]
     }
   }
