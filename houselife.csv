@@ -1,4 +1,4 @@
-state,type,number,kind 
+state,type,number,kind
 VIC,1,396,"""houses lost"""
 VIC,2,5,"""lives lost"""
 NSW,1,2475,"""houses lost"""
