@@ -36,7 +36,7 @@
     "y": {
       "field": "Area Burned",
       "type": "quantitative",
-      "title": "Total Area Burned"
+      "title": "Total Area Burned ('000 hectares)"
     },
     
     
